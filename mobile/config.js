@@ -8,8 +8,8 @@ const config = {
 
   // can use same client/api id as in module 3 project
   AUTH0_DOMAIN: 'droptableteam.auth0.com',
-  AUTH0_CLIENT_ID: 'ib-hsSX5LdSAyAf3q7gDedql6JVbONWsoTY',
-  AUTH0_API_ID: 'https://react-project-template-5117.herokuapp.com/api/',
+  AUTH0_CLIENT_ID: 'ib-hzdVHpA4cL85apooRsR1zTepR6Zh70EJ',
+  AUTH0_API_ID: 'https://droptableteam.auth0.com/api/v2/',
 }
 
 const devModeOverrides = {
