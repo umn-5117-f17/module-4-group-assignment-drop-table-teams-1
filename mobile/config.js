@@ -7,8 +7,8 @@ const config = {
   API_BASE: 'https://react-native-template-5117.herokuapp.com/',
 
   // can use same client/api id as in module 3 project
-  AUTH0_DOMAIN: 'maxharp3r.auth0.com',
-  AUTH0_CLIENT_ID: 'ib-OlMoJ1_C5oyTsOUgOX_6ImltKk8lW',
+  AUTH0_DOMAIN: 'droptableteam.auth0.com',
+  AUTH0_CLIENT_ID: 'ib-hsSX5LdSAyAf3q7gDedql6JVbONWsoTY',
   AUTH0_API_ID: 'https://react-project-template-5117.herokuapp.com/api/',
 }
 
