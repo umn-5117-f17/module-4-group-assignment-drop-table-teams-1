@@ -1,0 +1,21 @@
+{
+  "name": "react native project template",
+  "description": "React native project template, for module 4",
+  "slug": "5117-rnpt",
+  "privacy": "public",
+  "sdkVersion": "22.0.0",
+  "version": "0.0.0",
+  "orientation": "portrait",
+  "primaryColor": "#cccccc",
+  "icon": "./icon.png",
+  "loading": {
+    "icon": "./icon.png",
+    "hideExponentText": false
+  },
+  "packagerOpts": {
+    "assetExts": ["ttf", "mp4"]
+  },
+  "ios": {
+    "supportsTablet": true
+  }
+}
