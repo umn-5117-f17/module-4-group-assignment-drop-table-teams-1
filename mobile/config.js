@@ -8,7 +8,7 @@ const config = {
 
   // can use same client/api id as in module 3 project
   AUTH0_DOMAIN: 'droptableteam.auth0.com',
-  AUTH0_CLIENT_ID: 'ib-hzdVHpA4cL85apooRsR1zTepR6Zh70EJ',
+  AUTH0_CLIENT_ID: 'hzdVHpA4cL85apooRsR1zTepR6Zh70EJ',
   AUTH0_API_ID: 'https://droptableteam.auth0.com/api/v2/',
 }
 
