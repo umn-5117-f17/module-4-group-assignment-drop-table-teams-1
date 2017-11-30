@@ -12,6 +12,7 @@
     "node": "8.5.x"
   },
   "dependencies": {
+    "base64-img": "^1.0.3",
     "body-parser": "~1.17.1",
     "co": "^4.6.0",
     "cookie-parser": "~1.4.3",
