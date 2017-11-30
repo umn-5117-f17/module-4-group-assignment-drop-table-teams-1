@@ -1,10 +1,15 @@
 import React from 'react';
 import { Button, StyleSheet, Image, View } from 'react-native';
 import { ImagePicker } from 'expo';
+import vision from "react-cloud-vision-api";
+import base64Img = from 'base64-img';
 
 class CameraDemoScreen extends React.Component {
   state = {
     image: null,
+    API_KEY: "dd154ce6f099dcdcf45319997621dc13601acf73",
+    vision_req: null,
+    english_word: null
   };
 
   render() {
@@ -13,6 +18,7 @@ class CameraDemoScreen extends React.Component {
     if (image) {
       ConditionalRender = (<View>
                 <Image source={{ uri: image }} style={{ width: 300, height: 300, marginTop: 20 }} />
+                <Text> this.state.english_word </Text>
                 <Button
                   onPress={() => this.props.navigation.navigate('Translation')}
                   title="Translate Image"
@@ -44,6 +50,19 @@ class CameraDemoScreen extends React.Component {
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });
+
+vision.init({auth: this.state.API_KEY})
+const req = new vision.Request({
+  image: new vision.Image({
+    base64: base64Img.base64(this.state.image,
+  }),
+  features: [
+    new vision.Feature('LABEL_DETECTION', 10)
+  ]
+})
+
+this.setState(vision_req: req);
+
       // this is where we call google api
     }
   };
