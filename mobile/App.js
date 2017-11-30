@@ -13,6 +13,8 @@ import { withAuth } from './Auth';
 import AuthDemoScreen from './screens/AuthDemoScreen';
 import HomeScreen from './screens/HomeScreen';
 import FetchDemoScreen from './screens/FetchDemoScreen';
+import CameraDemoScreen from './screens/CameraDemoScreen';
+import TranslationScreen from './screens/TranslationScreen';
 
 const RootNavigator = StackNavigator({
   Home: {
@@ -32,6 +34,18 @@ const RootNavigator = StackNavigator({
     screen: FetchDemoScreen,
     navigationOptions: {
       headerTitle: 'Fetch Demo',
+    },
+  },
+  CameraDemo: {
+    screen: CameraDemoScreen,
+    navigationOptions: {
+      headerTitle: 'Camera Screen',
+    },
+  },
+  Translation: {
+    screen: TranslationScreen,
+    navigationOptions: {
+      headerTitle: 'Translate',
     },
   },
 });

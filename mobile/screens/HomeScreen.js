@@ -34,6 +34,14 @@ class HomeScreen extends React.Component {
           />
         </View>
 
+        <View style={styles.spaced}>
+          <Button
+            onPress={() => this.props.navigation.navigate('CameraDemo')}
+            title="Camera"
+            style={styles.spaced}
+          />
+        </View>
+
         <Text style={styles.spaced}>(staying awake)</Text>
         <KeepAwake />
       </View>
