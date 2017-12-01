@@ -11,7 +11,7 @@ import {
 import { KeepAwake } from 'expo';
 
 
-class HomeScreen extends React.Component {
+class TranslationScreen extends React.Component {
 
   render() {
     // console.log('HomeScreen props!', this.props)
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HomeScreen;
+export default TranslationScreen;

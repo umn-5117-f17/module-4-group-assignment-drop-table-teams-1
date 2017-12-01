@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import navigation, { StackNavigator } from 'react-navigation';
-import vision from "react-cloud-vision-api";
+// import vision from 'react-cloud-vision-api';
 
 import { withAuth } from './Auth';
 

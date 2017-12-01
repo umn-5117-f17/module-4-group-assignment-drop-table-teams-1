@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 22996,
-  "expoServerNgrokUrl": "https://bx-kwy.mccro016.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.bx-kwy.mccro016.mobile.exp.direct",
-  "ngrokPid": 22752
+  "packagerPid": 7280,
+  "expoServerNgrokUrl": "https://bx-kwy.wang4860.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.bx-kwy.wang4860.mobile.exp.direct",
+  "ngrokPid": 10264
 }
