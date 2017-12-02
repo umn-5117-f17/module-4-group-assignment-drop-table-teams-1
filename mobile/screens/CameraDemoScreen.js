@@ -23,15 +23,14 @@ class CameraDemoScreen extends React.Component {
                 <Text> {this.state.english_word} </Text>
                 <Picker
                   selectedValue={this.state.dst_lang}
-                  onValueChange={dst_lang => {
+                  onValueChange={language=> {
                     let base_url = 'https://translation.googleapis.com/language/translate/v2';
-                    let google_url = base_url + "?q=" + encodeURI(this.state.english_word) + "&target=" + dst_lang + "&source=en&key=AIzaSyAllxK-KhFvNMtTqkA59tfUkQCGAYNHi5I";
+                    let google_url = base_url + "?q=" + encodeURI(this.state.english_word) + "&target=" + language + "&source=en&key=AIzaSyAllxK-KhFvNMtTqkA59tfUkQCGAYNHi5I";
                     fetch(google_url, {
                       method:"POST"})
                       .then(res => res.json())
-                      .then(json => {
-                        this.setState({translation: json.data.translations[0].translatedText, dst_lang: dst_lang});
-                        this._speak();
+                      .then(json=> {
+                        this.setState({translation: json.data.translations[0].translatedText, dst_lang: language});
                       })
                       .catch(err => {
                         console.log(err);
@@ -39,11 +38,16 @@ class CameraDemoScreen extends React.Component {
                   }}
                   style={{ width: 160 }}
                   mode="dropdown">
-                  <Picker.Item label="Chinese-Simplified" value="zh-CN"/>
+                  <Picker.Item label="Chinese" value="zh-CN"/>
                   <Picker.Item label="Spanish" value="es"/>
                   <Picker.Item label="Hindi" value="hi"/>
                 </Picker>
                 <Text> {this.state.translation} </Text>
+                <Button
+                  disabled={this.state.inProgress}
+                  onPress={this._speak}
+                  title="Speak"
+                />
                 </View>);
     } else {
     ConditionalRender = (<View>
@@ -59,10 +63,6 @@ class CameraDemoScreen extends React.Component {
       </View>
     );
   }
-
-  _stop = () => {
-    Speech.stop();
-  };
 
   _speak = () => {
     const start = () => {
@@ -80,7 +80,7 @@ class CameraDemoScreen extends React.Component {
       onStart: start,
       onDone: complete,
       onStopped: complete,
-      onError: complete,
+      onError: (err => { console.log(err)}),
     });
   };
 
