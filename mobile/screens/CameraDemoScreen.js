@@ -46,13 +46,12 @@ class CameraDemoScreen extends React.Component {
 
   _pickImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
-
       allowsEditing: true,
       aspect: [4, 3],
       base64:true
     });
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       this.setState({ image_base64: result.base64 });
@@ -77,18 +76,20 @@ const new_req = {
 const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
 
 var temp = encodeURIComponent(JSON.stringify(new_req));
-console.log(JSON.stringify(temp));
+// console.log(JSON.stringify(temp));
 var x = vision_uri + temp;
 
-console.log(x);
-
-fetch("https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73", {
+// console.log(x);
+fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyC21ZnfUsGG1g5RGNNwWA6-6_tVfXu96sg", {
   method: "POST",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json"
   },
   body: JSON.stringify(new_req)
+})
+.then(res => {
+  console.log(res);
 });
 // client.labelDetection(this.state.image_base64)
 // .then(results => {

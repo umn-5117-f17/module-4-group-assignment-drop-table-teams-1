@@ -12,6 +12,7 @@
     "node": "8.5.x"
   },
   "dependencies": {
+    "@google-cloud/vision": "^0.13.0",
     "base64-img": "^1.0.3",
     "body-parser": "~1.17.1",
     "co": "^4.6.0",
@@ -30,8 +31,7 @@
     "multer-gridfs-storage": "^2.1.0",
     "node-fetch": "^1.7.3",
     "react-cloud-vision-api": "^0.3.0",
-    "serve-favicon": "~2.4.2",
-    "@google-cloud/vision": "^0.13.0"
+    "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

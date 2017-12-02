@@ -26,11 +26,11 @@ class FetchDemoScreen extends React.Component {
     fetch(`${config.API_BASE}/hello-world`)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log('fetched:', JSON.stringify(responseJson));
+        // console.log('fetched:', JSON.stringify(responseJson));
         this.setState({message: responseJson.message});
       })
       .catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
 
     // authenticated demo
