@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, Button, StyleSheet, Image, View } from 'react-native';
+import { Text, Button, StyleSheet, Image, View, Picker } from 'react-native';
 import { ImagePicker } from 'expo';
+
 //import vision from "react-cloud-vision-api";
 //import vision from "@google-cloud/vision";
 //const client = vision.ImageAnnotatorClient();
@@ -13,6 +14,7 @@ class CameraDemoScreen extends React.Component {
     vision_req: null,
 
     english_word: "",
+    dst_lang: "",
     final_uri: null
   };
 
@@ -23,6 +25,18 @@ class CameraDemoScreen extends React.Component {
       ConditionalRender = (<View>
                 <Image source={{uri: image_uri}} style={{ width: 300, height: 300, marginTop: 20 }} />
                 <Text> {this.state.english_word} </Text>
+                <View>
+        <Picker
+          selectedValue={this.state.dst_lang}
+          onValueChange={dst_lang => this.setState({ dst_lang })}
+          style={{ width: 160 }}
+          mode="dropdown">
+
+          <Picker.Item label="Chinese-Simplified" value="zh-CN"/>
+          <Picker.Item label="Spanish" value="es"/>
+          <Picker.Item label="Hindi" value="hi"/>
+        </Picker>
+      </View>
                 <Button
                   onPress={() => this.props.navigation.navigate('Translation')}
                   title="Translate Image"
