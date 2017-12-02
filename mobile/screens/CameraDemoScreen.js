@@ -2,13 +2,15 @@ import React from 'react';
 import { Button, StyleSheet, Image, View } from 'react-native';
 import { ImagePicker } from 'expo';
 import vision from "react-cloud-vision-api";
-import base64Img = from 'base64-img';
+
 
 class CameraDemoScreen extends React.Component {
   state = {
-    image: null,
+    image_uri: null,
+    image_base64: null,
     API_KEY: "dd154ce6f099dcdcf45319997621dc13601acf73",
     vision_req: null,
+
     english_word: "hi"
   };
 
@@ -51,12 +53,13 @@ class CameraDemoScreen extends React.Component {
     console.log(result);
 
     if (!result.cancelled) {
-      this.setState({ image: result.uri });
+      this.setState({ image_base64: result.base64 });
+      this.setState({image_uri: result.uri});
 
 vision.init({auth: this.state.API_KEY})
 const req = new vision.Request({
   image: new vision.Image({
-    base64: base64Img.base64(this.state.image,
+    base64: this.state.image_base64,
   }),
   features: [
     new vision.Feature('LABEL_DETECTION', 10)
