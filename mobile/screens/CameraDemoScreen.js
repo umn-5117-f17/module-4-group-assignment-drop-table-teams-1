@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Button, StyleSheet, Image, View, Picker } from 'react-native';
-import { ImagePicker } from 'expo';
+import { ImagePicker, Constants, Speech  } from 'expo';
 class CameraDemoScreen extends React.Component {
   state = {
     image_uri: null,
@@ -10,14 +10,9 @@ class CameraDemoScreen extends React.Component {
     english_word: "",
     dst_lang: "",
     translation: "",
-    final_uri: null
+    final_uri: null,
+    inProgress: false,
   };
-
-  // <Button
-  //   onPress={() => this.props.navigation.navigate('Translation')}
-  //   title="Translate Image"
-  //   style={styles.spaced}
-  // />
 
   render() {
     let { image_uri } = this.state;
@@ -35,8 +30,8 @@ class CameraDemoScreen extends React.Component {
                       method:"POST"})
                       .then(res => res.json())
                       .then(json => {
-                        console.log(json.data.translations[0].translatedText);
                         this.setState({translation: json.data.translations[0].translatedText, dst_lang: dst_lang});
+                        this._speak();
                       })
                       .catch(err => {
                         console.log(err);
@@ -64,6 +59,30 @@ class CameraDemoScreen extends React.Component {
       </View>
     );
   }
+
+  _stop = () => {
+    Speech.stop();
+  };
+
+  _speak = () => {
+    const start = () => {
+      this.setState({ inProgress: true });
+    };
+
+    const complete = () => {
+      this.state.inProgress && this.setState({ inProgress: false });
+    };
+
+    Speech.speak(this.state.translation, {
+      language: this.state.dst_lang,
+      pitch: 1,
+      rate: 0.75,
+      onStart: start,
+      onDone: complete,
+      onStopped: complete,
+      onError: complete,
+    });
+  };
 
   _pickImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
