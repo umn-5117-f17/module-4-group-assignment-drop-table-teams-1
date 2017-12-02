@@ -9,7 +9,7 @@ class CameraDemoScreen extends React.Component {
     image: null,
     API_KEY: "dd154ce6f099dcdcf45319997621dc13601acf73",
     vision_req: null,
-    english_word: null
+    english_word: "hi"
   };
 
   render() {
@@ -42,8 +42,10 @@ class CameraDemoScreen extends React.Component {
 
   _pickImage = async () => {
     let result = await ImagePicker.launchCameraAsync({
+
       allowsEditing: true,
       aspect: [4, 3],
+      base64:true
     });
 
     console.log(result);
