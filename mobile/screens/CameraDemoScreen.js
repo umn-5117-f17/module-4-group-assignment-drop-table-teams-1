@@ -12,7 +12,7 @@ class CameraDemoScreen extends React.Component {
     API_KEY: "dd154ce6f099dcdcf45319997621dc13601acf73",
     vision_req: null,
 
-    english_word: "hi",
+    english_word: "",
     final_uri: null
   };
 
@@ -76,10 +76,8 @@ const new_req = {
 const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
 
 var temp = encodeURIComponent(JSON.stringify(new_req));
-// console.log(JSON.stringify(temp));
 var x = vision_uri + temp;
 
-// console.log(x);
 fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyC21ZnfUsGG1g5RGNNwWA6-6_tVfXu96sg", {
   method: "POST",
   headers: {
@@ -88,9 +86,19 @@ fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyC21ZnfUsGG1g5R
   },
   body: JSON.stringify(new_req)
 })
-.then(res => {
-  console.log(res);
+.then(res => JSON.parse(res._bodyInit))
+.then(body => {
+
+  // console.log(body.responses[0].labelAnnotations[0].description);
+  this.setState({english_word : body.responses[0].labelAnnotations[0].description});
 });
+  //  {
+  // // console.log(res);
+  // // console.log(res["_bodyInit"]);
+  // // console.log(res._bodyInit);
+  // console.log(res._bodyInit.parse);
+
+// });
 // client.labelDetection(this.state.image_base64)
 // .then(results => {
 //   const labels = results[0].labelAnnotations;
