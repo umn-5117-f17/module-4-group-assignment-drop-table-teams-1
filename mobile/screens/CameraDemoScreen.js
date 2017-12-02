@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, StyleSheet, Image, View } from 'react-native';
+import { Text, Button, StyleSheet, Image, View } from 'react-native';
 import { ImagePicker } from 'expo';
-import vision from "react-cloud-vision-api";
-
+//import vision from "react-cloud-vision-api";
+//import vision from "@google-cloud/vision";
+//const client = vision.ImageAnnotatorClient();
 
 class CameraDemoScreen extends React.Component {
   state = {
@@ -11,16 +12,17 @@ class CameraDemoScreen extends React.Component {
     API_KEY: "dd154ce6f099dcdcf45319997621dc13601acf73",
     vision_req: null,
 
-    english_word: "hi"
+    english_word: "hi",
+    final_uri: null
   };
 
   render() {
-    let { image } = this.state;
+    let { image_uri } = this.state;
     let ConditionalRender = null;
-    if (image) {
+    if (image_uri) {
       ConditionalRender = (<View>
-                <Image source={{ uri: image }} style={{ width: 300, height: 300, marginTop: 20 }} />
-                <Text> this.state.english_word </Text>
+                <Image source={{uri: image_uri}} style={{ width: 300, height: 300, marginTop: 20 }} />
+                <Text> {this.state.english_word} </Text>
                 <Button
                   onPress={() => this.props.navigation.navigate('Translation')}
                   title="Translate Image"
@@ -56,17 +58,58 @@ class CameraDemoScreen extends React.Component {
       this.setState({ image_base64: result.base64 });
       this.setState({image_uri: result.uri});
 
-vision.init({auth: this.state.API_KEY})
-const req = new vision.Request({
-  image: new vision.Image({
-    base64: this.state.image_base64,
-  }),
-  features: [
-    new vision.Feature('LABEL_DETECTION', 10)
+//vision.init({auth: this.state.API_KEY})
+const new_req = {
+  "requests": [
+    {
+      "image": {
+        "content": this.state.image_base64
+      },
+      "features": [
+        {
+          "type": "LABEL_DETECTION",
+          "maxResults": 5
+        }
+      ]
+    }
   ]
-})
+};
+const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
 
-this.setState(vision_req: req);
+var temp = encodeURIComponent(JSON.stringify(new_req));
+console.log(JSON.stringify(temp));
+var x = vision_uri + temp;
+
+console.log(x);
+
+fetch("https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73", {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(new_req)
+});
+// client.labelDetection(this.state.image_base64)
+// .then(results => {
+//   const labels = results[0].labelAnnotations;
+//
+//   console.log('Labels:');
+//   labels.forEach(label => console.log(label.description));
+// })
+
+// const req = new vision.Request({
+//   image: new vision.Image({
+//     base64: this.state.image_base64,
+//   }),
+//   features: [
+//     new vision.Feature('LABEL_DETECTION', 1)
+//   ]
+// })
+// console.log("this is the req");
+// console.log(req);
+// console.log("after req");
+//this.setState(vision_req: req);
 
       // this is where we call google api
     }

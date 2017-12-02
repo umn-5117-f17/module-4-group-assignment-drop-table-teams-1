@@ -30,7 +30,8 @@
     "multer-gridfs-storage": "^2.1.0",
     "node-fetch": "^1.7.3",
     "react-cloud-vision-api": "^0.3.0",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "@google-cloud/vision": "^0.13.0"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
