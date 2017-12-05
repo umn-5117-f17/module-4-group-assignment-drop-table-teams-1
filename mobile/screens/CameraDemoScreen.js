@@ -36,8 +36,9 @@ class CameraDemoScreen extends React.Component {
                         console.log(err);
                       });
                   }}
-                  style={{ width: 160 }}
+                  style={{flex: 1}}
                   mode="dropdown">
+                  <Picker.Item label="Choose A Language" value=""/>
                   <Picker.Item label="Chinese" value="zh-CN"/>
                   <Picker.Item label="Spanish" value="es"/>
                   <Picker.Item label="Hindi" value="hi"/>
@@ -136,6 +137,9 @@ const styles = StyleSheet.create({
   },
   spaced: {
     marginTop: 20,
+  },
+  Text : {
+    flex: 1
   }
 });
 
