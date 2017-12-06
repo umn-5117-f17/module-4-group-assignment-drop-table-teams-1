@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, Button, StyleSheet, Image, View, Picker } from 'react-native';
 import { ImagePicker, Constants, Speech  } from 'expo';
+
 class CameraDemoScreen extends React.Component {
   state = {
     image_uri: null,
@@ -36,7 +37,7 @@ class CameraDemoScreen extends React.Component {
                         console.log(err);
                       });
                   }}
-                  style={{flex: 1}}
+                  style={{ width: 160 }}
                   mode="dropdown">
                   <Picker.Item label="Choose A Language" value=""/>
                   <Picker.Item label="Chinese" value="zh-CN"/>
@@ -115,7 +116,8 @@ class CameraDemoScreen extends React.Component {
         },
         body: JSON.stringify(new_req)
       })
-      .then(res => JSON.parse(res._bodyInit))
+      .then(res =>
+        JSON.parse(res._bodyInit))
       .then(body => {
         this.setState({english_word : body.responses[0].labelAnnotations[0].description});
       });
@@ -137,9 +139,6 @@ const styles = StyleSheet.create({
   },
   spaced: {
     marginTop: 20,
-  },
-  Text : {
-    flex: 1
   }
 });
 

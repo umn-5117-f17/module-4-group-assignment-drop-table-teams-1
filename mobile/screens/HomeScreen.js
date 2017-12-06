@@ -18,21 +18,6 @@ class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>home screen</Text>
-        <View style={styles.spaced}>
-          <Button
-            onPress={() => this.props.navigation.navigate('FetchDemo')}
-            title="fetch demo"
-          />
-        </View>
-
-        <View style={styles.spaced}>
-          <Button
-            onPress={() => this.props.navigation.navigate('AuthDemo')}
-            title="auth demo"
-            style={styles.spaced}
-          />
-        </View>
 
         <View style={styles.spaced}>
           <Button
