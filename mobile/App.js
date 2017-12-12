@@ -16,6 +16,7 @@ import HomeScreen from './screens/HomeScreen';
 import FetchDemoScreen from './screens/FetchDemoScreen';
 import CameraDemoScreen from './screens/CameraDemoScreen';
 import TranslationScreen from './screens/TranslationScreen';
+import HistoryScreen from './screens/HistoryScreen';
 
 const RootNavigator = StackNavigator({
   Home: {
@@ -24,32 +25,18 @@ const RootNavigator = StackNavigator({
       headerTitle: 'Home',
     },
   },
-  AuthDemo: {
-    screen: AuthDemoScreen,
-    navigationOptions: {
-      headerTitle: 'Auth Demo',
-    },
 
-  },
-  FetchDemo: {
-    screen: FetchDemoScreen,
+  HistoryScreen: {
+    screen: HistoryScreen,
     navigationOptions: {
-      headerTitle: 'Fetch Demo',
+      headerTitle: 'History Screen',
     },
-  },
-  CameraDemo: {
-    screen: CameraDemoScreen,
-    navigationOptions: {
-      headerTitle: 'Camera Screen',
-    },
-  },
-  Translation: {
-    screen: TranslationScreen,
-    navigationOptions: {
-      headerTitle: 'Translate',
-    },
-  },
-});
+  }
+
+
+
+}
+);
 
 class App extends React.Component {
 

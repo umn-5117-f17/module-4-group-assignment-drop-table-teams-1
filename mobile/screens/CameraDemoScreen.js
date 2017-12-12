@@ -3,6 +3,11 @@ import { Text, Button, StyleSheet, Image, View, Picker } from 'react-native';
 import { ImagePicker, Constants, Speech  } from 'expo';
 
 class CameraDemoScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+  }
   state = {
     image_uri: null,
     image_base64: null,
@@ -16,6 +21,11 @@ class CameraDemoScreen extends React.Component {
   };
 
   render() {
+    if(this.props.base64_img && this.props.english_word){
+    this.setState(image_base64: props.base64_img);
+    this.setState(english_word: props.english_word);
+  }
+
     let { image_uri } = this.state;
     let ConditionalRender = null;
     if (image_uri) {
