@@ -4,6 +4,10 @@ var router = express.Router();
 const checkJwt = require('../auth').checkJwt;
 const fetch = require('node-fetch');
 
+router.get('/newNote', function(req,res) {
+  console.log('hi');
+});
+
 router.post('/newNote', function(req,res) {
   console.log("in new note server");
   console.log(req.body);
