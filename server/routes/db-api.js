@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 router.get('/', function(req,res) {
   console.log('hi');
+  res.json({'message': 'something here...'});
 });
 
 router.post('/newNote', function(req,res) {
