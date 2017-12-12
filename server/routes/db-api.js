@@ -4,6 +4,20 @@ var router = express.Router();
 const checkJwt = require('../auth').checkJwt;
 const fetch = require('node-fetch');
 
+router.post('/newNote', function(req,res) {
+  console.log("in new note server");
+  console.log(req.body);
+  var newItem = {
+    photo: req.body.photo,
+    english: req.body.original,
+    translated: req.body.translated
+  }
+  console.log(newItem);
+  req.db.collection('Notes').insertOne(newItem, function(err, results) {
+
+ })
+});
+
 // simple API call, no authentication or user info
 router.get('/unprotected', function(req, res, next) {
 

@@ -21,6 +21,7 @@ app.use(cookieParser());
 app.use(expressMongoDb(process.env.DB_URI));
 
 app.get('/', function(req, res, next) {
+  console.log('there is nothing here');
   res.json({'message': 'nothing here...'});
 });
 

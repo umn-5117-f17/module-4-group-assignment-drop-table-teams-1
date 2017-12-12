@@ -12,7 +12,10 @@ import { KeepAwake } from 'expo';
 
 
 class HomeScreen extends React.Component {
-
+  _test = () => {
+    console.log('test');
+    fetch('');
+  };
   render() {
     // console.log('HomeScreen props!', this.props)
 
@@ -24,6 +27,19 @@ class HomeScreen extends React.Component {
             onPress={() => this.props.navigation.navigate('CameraDemo')}
             title="Camera"
             style={styles.spaced}
+          />
+          <Button
+            onPress={() => {
+              console.log('test');
+              fetch('http://localhost:3000/')
+              .then(res => {
+                console.log('success!');
+              })
+              .catch(err => {
+                console.log(err);
+              });
+            }}
+            title="Server"
           />
         </View>
 
