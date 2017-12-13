@@ -90,7 +90,7 @@ class CameraDemoScreen extends React.Component {
           translated: this.state.translation
         })
       }) .then(
-        this.props.navigation.navigate('CameraDemo')
+        this.props.navigation.navigate('Home')
       ).catch(function(error) {
     console.log('There has been a problem with your fetch operation: ' + error.message);
     });

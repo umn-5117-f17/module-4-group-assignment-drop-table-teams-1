@@ -25,23 +25,40 @@
         }
 
         render () {
-          var movies = this.state.pics;
-          const movieItems = movies.map((movie, i) =>
-          <View key={i}>
-          <Image
-              source={{ uri: 'data:image/png;base64,' + movie.base64_img }}
-              style={{ height: 140, width: 200 }}
+          var movieItems;
+          fetch('https://lit-chamber-54037.herokuapp.com/api/db/notes')
+            .then(res => res.json())
+            .then(json => {
+              //console.log(json);
+              var collects = json.noteList;
 
-              />
-              <Text>{movie.english_word}</Text>
-              </View>
-              );
+
+
+              var movies = json.noteList;
+              console.log(json.noteList);
+              movieItems = movies.map((movie, i) =>
+              <View key={i}>
+              <Image
+                  source={{ uri: 'data:image/png;base64,' + movie.photo }}
+                  style={{ height: 140, width: 200 }}
+
+                  />
+                  <Text>{movie.translated}</Text>
+                  </View>
+                  );
+                  console.log(movieItems);
+
+              this.setState({movieList: movieItems});  /*this will cause an invoke of the render() function again */
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
 
           return (
             <View>
             <ScrollView>
             <View>
-            {movieItems}
+            {this.state.movieList}
             </View>
             </ScrollView>
             </View>
