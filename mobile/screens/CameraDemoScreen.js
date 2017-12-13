@@ -49,12 +49,20 @@ class CameraDemoScreen extends React.Component {
                   onPress={this._speak}
                   title="Speak"
                 />
+                <Button
+                  onPress={this._postNote}
+                  title="Save"
+                />
                 </View>);
     } else {
     ConditionalRender = (<View>
             <Button
               title="Take a picture"
               onPress={this._pickImage}
+            />
+            <Button
+              title="Choose Image"
+              onPress={this._chooseImage}
             />
           </View>);
         }
@@ -63,6 +71,29 @@ class CameraDemoScreen extends React.Component {
         {ConditionalRender}
       </View>
     );
+  }
+
+  _postNote = () => {
+    console.log("post client side");
+    console.log(this.state.english_word);
+    var x = this.state.english_word;
+
+    fetch('https://lit-chamber-54037.herokuapp.com/api/db/newNote', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          photo: this.state.image_base64,
+          english: x,
+          translated: this.state.translation
+        })
+      }) .then(
+        this.props.navigation.navigate('CameraDemo')
+      ).catch(function(error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+    });
   }
 
   _speak = () => {
@@ -104,9 +135,9 @@ class CameraDemoScreen extends React.Component {
             }]
         }]
       };
-      const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
-      var temp = encodeURIComponent(JSON.stringify(new_req));
-      var x = vision_uri + temp;
+      // const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
+      // var temp = encodeURIComponent(JSON.stringify(new_req));
+      // var x = vision_uri + temp;
       fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyC21ZnfUsGG1g5RGNNwWA6-6_tVfXu96sg", {
         method: "POST",
         headers: {
@@ -115,13 +146,53 @@ class CameraDemoScreen extends React.Component {
         },
         body: JSON.stringify(new_req)
       })
-      .then(res => JSON.parse(res._bodyInit))
+      .then(res =>
+        JSON.parse(res._bodyInit))
       .then(body => {
         this.setState({english_word : body.responses[0].labelAnnotations[0].description});
       });
     }
   };
-}
+
+
+_chooseImage = async () => {
+  let result = await ImagePicker.launchImageLibraryAsync({
+    allowsEditing: true,
+    aspect: [4, 3],
+    base64:true
+  });
+  if (!result.cancelled) {
+    this.setState({ image_base64: result.base64 });
+    this.setState({image_uri: result.uri});
+    const new_req = {
+      "requests": [{
+        "image": {
+          "content": this.state.image_base64 },
+          "features": [{
+              "type": "LABEL_DETECTION",
+              "maxResults": 5
+          }]
+      }]
+    };
+    // const vision_uri = "https://vision.googleapis.com/v1/images:label?key=dd154ce6f099dcdcf45319997621dc13601acf73";
+    // var temp = encodeURIComponent(JSON.stringify(new_req));
+    // var x = vision_uri + temp;
+    fetch("https://vision.googleapis.com/v1/images:annotate?key=AIzaSyC21ZnfUsGG1g5RGNNwWA6-6_tVfXu96sg", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(new_req)
+    })
+    .then(res =>
+      JSON.parse(res._bodyInit))
+    .then(body => {
+      this.setState({english_word : body.responses[0].labelAnnotations[0].description});
+    });
+  }
+};
+} // close class
 
 const styles = StyleSheet.create({
   container: {

@@ -16,6 +16,7 @@ import HomeScreen from './screens/HomeScreen';
 import FetchDemoScreen from './screens/FetchDemoScreen';
 import CameraDemoScreen from './screens/CameraDemoScreen';
 import TranslationScreen from './screens/TranslationScreen';
+import BrowseNotesScreen from './screens/BrowseNotesScreen';
 
 const RootNavigator = StackNavigator({
   Home: {
@@ -41,6 +42,12 @@ const RootNavigator = StackNavigator({
     screen: CameraDemoScreen,
     navigationOptions: {
       headerTitle: 'Camera Screen',
+    },
+  },
+  BrowseNotes: {
+    screen: BrowseNotesScreen,
+    navigationOptions: {
+      headerTitle: 'Browse Notes',
     },
   },
   Translation: {

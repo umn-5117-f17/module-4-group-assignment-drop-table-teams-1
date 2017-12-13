@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
-  "packagerPort": 19002,
-  "packagerPid": 236,
-  "expoServerNgrokUrl": "https://qp-jsi.wang4860.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.qp-jsi.wang4860.mobile.exp.direct",
-  "ngrokPid": 652
+  "packagerPort": 19001,
+  "packagerPid": 25772,
+  "expoServerNgrokUrl": "https://vy-w96.mccro016.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.vy-w96.mccro016.mobile.exp.direct",
+  "ngrokPid": 7200
 }
