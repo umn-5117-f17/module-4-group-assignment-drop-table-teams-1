@@ -43,16 +43,17 @@ export default class HistoryScreen extends Component {
     }}/>
     }
     render () {
-    return (<ScrollView
-    contentContainerStyle={styles.contentContainer}
-    data={this.pics}
-    {this.state.pics.map((base64_img, i) =>
-    <View key={i}>
-    <Image style={styles.image} source={{ base64_img: base64_img }} key={i}/>
-    </View>
-  )}
-    renderItem={this.renderItem}
-    );
+      return (
+        <ScrollView
+          contentContainerStyle={styles.contentContainer}
+          data={this.state.pics.map((base64_img, i) => {
+            <View key={i}>
+            <Image style={styles.image} source={{ base64_img: base64_img }} key={i}/>
+            </View>
+          })}
+          renderItem={this.renderItem}
+        />
+      );
     }
 }
 const styles = StyleSheet.create({
