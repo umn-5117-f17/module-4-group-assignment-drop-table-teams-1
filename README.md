@@ -4,14 +4,16 @@ CSCI 5117, Fall 2017, [assignment description](https://docs.google.com/document/
 
 ## App Info:
 
-* Team Name: TODO
-* App Name: TODO
-* App Link: <https://expo.io/@TODO/TODO>
+* Team Name: DROPTABLE teams;
+* App Name: Thingamajig translation app
+* App Link: <https://expo.io/@mccro016/5117-rnpt>
 
 ### Students
 
-* First Last, x500@umn.edu
-* ...
+* Connor McCrory, mccro016
+* Michael Wang, wang4860
+* Benji Fischman, fisch885
+* Aishwarya Gune, gune0016
 
 
 ## Key Features
@@ -19,7 +21,9 @@ CSCI 5117, Fall 2017, [assignment description](https://docs.google.com/document/
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-* ...
+* working with both android and ios differences
+* using google apis and calling them
+* design for mobile
 
 
 ## Screenshots of App
@@ -36,7 +40,8 @@ along with a very brief caption:**
 Please do not document required libraries (e.g., Express, Bulma).**
 
 * Library or service name: description of use
-* ...
+* google vision, to identify objects in images
+* google translate, to translate words
 
 **If there's anything else you would like to disclose about how your project
 relied on external code, expertise, or anything else, please disclose that
